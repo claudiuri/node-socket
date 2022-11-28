@@ -176,7 +176,6 @@ function printCurrentSales() {
 
 server.on("connection", (socket) => {
 
-
   socket.on("message", (data) => {
     const { type, content } = JSON.parse(data);
 

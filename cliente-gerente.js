@@ -53,17 +53,20 @@ socket.addEventListener("open", () => {
 
 socket.addEventListener("message", ({ data }) => {
 
-  const { store, date, storeSales } = JSON.parse(data);
+  try {
+    const { store, date, storeSales } = JSON.parse(data);
 
-  if (store && date && storeSales) {
+    if (store && date && storeSales) {
 
-    console.log(`Vendas da loja ${store} de ${formatDate(date.start)} até ${formatDate(date.end)})`)
+      console.log(`Vendas da loja ${store} de ${formatDate(date.start)} até ${formatDate(date.end)})`)
 
-    for (const { code, seller, store, ammount, date } of storeSales) {
-      console.log(`Código: ${code} | Vendedor ${seller} | Loja ${store} | Valor ${ammount} | Data ${formatDate(date)}`)
+      for (const { code, seller, store, ammount, date } of storeSales) {
+        console.log(`Código: ${code} | Vendedor ${seller} | Loja ${store} | Valor ${ammount} | Data ${formatDate(date)}`)
+      }
+
     }
 
-  } else {
+  } catch {
     console.log(data.toString())
   }
 
